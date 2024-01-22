@@ -109,3 +109,13 @@ searchForm.addEventListener('submit', event => {
   const searchQuery = searchInput.value.trim();
   searchImages(searchQuery);
 });
+
+// NEW AXIOS CODE
+
+axios({
+  method: 'get',
+  url: '<https://jsonplaceholder.typicode.com/users>'
+});
+const myApiKey = "secret-api-key-for-every-request";
+
+axios.defaults.headers.common["header-name"] = myApiKey;

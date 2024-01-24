@@ -116,3 +116,33 @@ axios({
   method: 'get',
   url: '<https://jsonplaceholder.typicode.com/users>'
 });
+
+
+function updateGallery(images) {
+  const galleryMarkup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
+<li class="gallery-item">
+     <a href="${largeImageURL}">
+     <img src="${webformatURL}" alt="${tags}">
+      <div class="image-info">
+          <p>Likes:${likes}</p>
+          <p>Views: ${views}</p>
+          <p>Comments: ${comments}</p>
+  <p>Downloads: ${downloads}</p>
+      </div>
+     </a>
+    </li>`).join('');
+  gallery.insertAdjacentHTML('beforeend', galleryMarkup); 
+  lightbox.refresh();
+}
+
+
+if (currentPage === Math.ceil(totalHits / per_page)) {
+  loadMoreBtn.removeEventListener('click', loadImagesFromSearch);
+   iziToast.info({
+    title: "Info",
+    message: "We're sorry, but you've reached the end of search results",
+    position: "topRight",
+  });
+}
+
+// сменить классы

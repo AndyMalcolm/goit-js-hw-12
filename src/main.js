@@ -119,30 +119,48 @@ axios({
 
 
 function updateGallery(images) {
-  const galleryMarkup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
-<li class="gallery-item">
-     <a href="${largeImageURL}">
-     <img src="${webformatURL}" alt="${tags}">
-      <div class="image-info">
-          <p>Likes:${likes}</p>
-          <p>Views: ${views}</p>
-          <p>Comments: ${comments}</p>
-  <p>Downloads: ${downloads}</p>
-      </div>
-     </a>
-    </li>`).join('');
-  gallery.insertAdjacentHTML('beforeend', galleryMarkup); 
+  const galleryMarkup = images
+    .map(
+      (image) => `
+        <a href="${image.largeUrl}" data-lightbox="gallery" data-title="Likes: ${image.likes}, Views: ${image.views}, Comments: ${image.comments}, Downloads: ${image.downloads}">
+          <img src="${image.url}" alt="${image.alt}" />
+        </a>
+      `
+    )
+    .join('');
+
+  galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
+
   lightbox.refresh();
+
+  toggleLoadMoreButton();
 }
 
+function toggleLoadMoreButton() {
+  if (totalHits > galleryContainer.children.length) {
+    loadMoreBtn.style.display = "block";
+  } else {
+    loadMoreBtn.style.display = "none";
 
-if (currentPage === Math.ceil(totalHits / per_page)) {
-  loadMoreBtn.removeEventListener('click', loadImagesFromSearch);
-   iziToast.info({
+if (galleryContainer.children.length > 0 && currentPage > 1 && totalHits === galleryContainer.children.length) {
+  iziToast.info({
     title: "Info",
-    message: "We're sorry, but you've reached the end of search results",
+    message: "We're sorry, but you've reached the end of search results.",
     position: "topRight",
   });
 }
+  }
+}
 
+function createGalleryCard(image) {
+  const card = document.createElement("div");
+  card.classList.add("gallery-card");
+
+  const img = document.createElement("img");
+  img.src = image.url;
+  img.alt = image.alt;
+
+  card.appendChild(img);
+  return card;
+}
 // сменить классы

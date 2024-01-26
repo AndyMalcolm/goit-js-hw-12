@@ -207,12 +207,6 @@ background-color: #6C8CFF;
 
 /* LOAD MORE */
 
-.button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
 
 .lm-button {
   height: auto;

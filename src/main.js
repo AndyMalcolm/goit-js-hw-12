@@ -110,12 +110,12 @@ searchForm.addEventListener('submit', event => {
   searchImages(searchQuery);
 });
 
-// NEW AXIOS CODE
+// LOAD MORE
 
-axios({
-  method: 'get',
-  url: '<https://jsonplaceholder.typicode.com/users>'
-});
+// axios({
+//   method: 'get',
+//   url: '<https://jsonplaceholder.typicode.com/users>'
+// });
 
 
 function updateGallery(images) {

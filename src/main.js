@@ -107,7 +107,10 @@ searchForm.addEventListener('submit', event => {
   event.preventDefault();
 
   const searchQuery = searchInput.value.trim();
-  searchImages(searchQuery);
+  currentPage = 1;
+  loadMoreButton.style.display = 'none';
+  searchImages(searchQuery, currentPage);
+  searchForm.reset();
 });
 
 // LOAD MORE

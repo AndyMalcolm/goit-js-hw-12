@@ -49,6 +49,7 @@ async function searchImages(query, currentPage) {
 
 
 // эу функцию переделать и внутрь первой запихнуть
+// начинать с try { const response = await axios.get(
 function searchImages(query) {
   requestParams.q = query;
 

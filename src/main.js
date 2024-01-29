@@ -27,18 +27,22 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-let requestParams = {
-  key: '40999949-91c7d6cea5390f79fde95dcf3',
-  q: '',
+const requestParams = {
+  key: API_KEY,
+  q: searchQuery,
   image_type: 'photo',
   orientation: 'horizontal',
   safesearch: true,
+  page: currentPage,
+  per_page: perPage,
 };
 
+const searchParams = new URLSearchParams(requestParams);
+
+showLoader();
 
 function searchImages(query) {
   requestParams.q = query;
-  const searchParams = new URLSearchParams(requestParams);
 
   showLoader();
 

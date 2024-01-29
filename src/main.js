@@ -27,24 +27,24 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-async function searchImages(query, currentPage) {
-  query = searchQuery;
+// async function searchImages(query, currentPage) {
+//   query = searchQuery;
 
-  const requestParams = {
-    key: API_KEY,
-    q: searchQuery,
-    image_type: 'photo',
-    orientation: 'horizontal',
-    safesearch: true,
-    page: currentPage,
-    per_page: perPage,
-  };
-  const searchParams = new URLSearchParams(requestParams);
+//   const requestParams = {
+//     key: API_KEY,
+//     q: searchQuery,
+//     image_type: 'photo',
+//     orientation: 'horizontal',
+//     safesearch: true,
+//     page: currentPage,
+//     per_page: perPage,
+//   };
+//   const searchParams = new URLSearchParams(requestParams);
 
-  showLoader();
+//   showLoader();
 
 
-}
+// }
   
 
 

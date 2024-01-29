@@ -27,20 +27,28 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-const requestParams = {
-  key: API_KEY,
-  q: searchQuery,
-  image_type: 'photo',
-  orientation: 'horizontal',
-  safesearch: true,
-  page: currentPage,
-  per_page: perPage,
-};
+async function searchImages(query, currentPage) {
+  query = searchQuery;
 
-const searchParams = new URLSearchParams(requestParams);
+  const requestParams = {
+    key: API_KEY,
+    q: searchQuery,
+    image_type: 'photo',
+    orientation: 'horizontal',
+    safesearch: true,
+    page: currentPage,
+    per_page: perPage,
+  };
+  const searchParams = new URLSearchParams(requestParams);
 
-showLoader();
+  showLoader();
 
+
+}
+  
+
+
+// эу функцию переделать и внутрь первой запихнуть
 function searchImages(query) {
   requestParams.q = query;
 
@@ -110,6 +118,8 @@ function searchImages(query) {
       });
     });
 }
+
+
 
 searchForm.addEventListener('submit', event => {
   event.preventDefault();

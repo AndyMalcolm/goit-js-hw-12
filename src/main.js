@@ -43,13 +43,6 @@ async function searchImages(query, currentPage) {
 
   showLoader();
 
-
-}
-  
-
-
-// эу функцию переделать и внутрь первой запихнуть
-// начинать с try { const response = await axios.get(
 // function searchImages(query) {
 //   requestParams.q = query;
 
@@ -131,6 +124,12 @@ async function searchImages(query, currentPage) {
 //   searchImages(searchQuery, currentPage);
 //   searchForm.reset();
 // });
+}
+  
+
+
+// эту закоментированную функцию переделать
+// начинать с try { const response = await axios.get
 
 // LOAD MORE
 

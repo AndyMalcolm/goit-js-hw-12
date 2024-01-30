@@ -11,6 +11,7 @@ const searchForm = document.querySelector('.search');
 const searchInput = document.querySelector('.input');
 const loaderContainer = document.querySelector('.loader-container');
 const loader = document.querySelector('.loader');
+const gallery = document.querySelector('.gallery');
 
 const API_KEY = '40999949-91c7d6cea5390f79fde95dcf3';
 
@@ -49,14 +50,25 @@ async function searchImages(query, currentPage) {
       );
 
     hideLoader();
+
+    const { hits, totalHits } = response.data;
+    const lightbox = new SimpleLightbox('.gallery a', {
+      captionDelay: 250,
+      captionsData: 'alt',
+      close: true,
+    });
+
+    lightbox.refresh();
+
+    if (currentPage === 1) {
+      gallery.innerHTML = '';
+    }
 // function searchImages(query) {
 //   requestParams.q = query;
 
-//   showLoader();
 
 //   fetch(`https://pixabay.com/api/?${searchParams}`)
 //     .then(response => {
-//       hideLoader();
 
 //       if (!response.ok) {
 //         throw new Error(
@@ -66,47 +78,45 @@ async function searchImages(query, currentPage) {
 //       return response.json();
 //     })
 
-//     .then(({ hits }) => {
-//       const gallery = document.querySelector('.gallery');
+//     .then(({ hits }) => {       
 
 //       const lightbox = new SimpleLightbox('.gallery a', {
 //         captionDelay: 250,
 //         captionsData: 'alt',
 //         close: true,
 //       });
+// ТУТ ПЕРЕПИСАТЬ ИЛИ УДАЛИТЬ
 
-//       gallery.innerHTML = '';
-
-//       gallery.innerHTML = hits.reduce(
-//         (html, image) =>
-//           html +
-//           `<a class="gallery-link" href="${image.largeImageURL}">
-//             <img
-//                 class="gallery-image"
-//                 src="${image.webformatURL}"
-//                 alt="${image.tags}"
-//             />
-//            <ul class="info-list">
-//               <li class="info-item">
-//                   <p class="info-title">Likes</p>
-//                   <p class="info-value">${image.likes}</p>
-//               </li>
-//               <li class="info-item">
-//                   <p class="info-title">Views</p>
-//                   <p class="info-value">${image.views}</p>
-//               </li>
-//               <li class="info-item">
-//                   <p class="info-title">Comments</p>
-//                   <p class="info-value">${image.comments}</p>
-//               </li>
-//               <li class="info-item">
-//                   <p class="info-title">Downloads</p>
-//                   <p class="info-value">${image.downloads}</p>
-//               </li>
-//             </ul>
-//         </a>`,
-//         ''
-//       );
+      gallery.innerHTML = hits.reduce(
+        (html, image) =>
+          html +
+          `<a class="gallery-link" href="${image.largeImageURL}">
+            <img
+                class="gallery-image"
+                src="${image.webformatURL}"
+                alt="${image.tags}"
+            />
+           <ul class="info-list">
+              <li class="info-item">
+                  <p class="info-title">Likes</p>
+                  <p class="info-value">${image.likes}</p>
+              </li>
+              <li class="info-item">
+                  <p class="info-title">Views</p>
+                  <p class="info-value">${image.views}</p>
+              </li>
+              <li class="info-item">
+                  <p class="info-title">Comments</p>
+                  <p class="info-value">${image.comments}</p>
+              </li>
+              <li class="info-item">
+                  <p class="info-title">Downloads</p>
+                  <p class="info-value">${image.downloads}</p>
+              </li>
+            </ul>
+        </a>`,
+        ''
+      );
 
 //       lightbox.refresh();
 //     })

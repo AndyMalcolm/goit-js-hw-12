@@ -43,6 +43,12 @@ async function searchImages(query, currentPage) {
 
   showLoader();
 
+    try {
+      const response = await axios.get(
+        `https://pixabay.com/api/?${searchParams}`
+      );
+
+    hideLoader();
 // function searchImages(query) {
 //   requestParams.q = query;
 
@@ -124,12 +130,16 @@ async function searchImages(query, currentPage) {
 //   searchImages(searchQuery, currentPage);
 //   searchForm.reset();
 // });
+  } catch (error) {
+    hideLoader();
+
+    iziToast.error({
+      title: 'Error',
+      message: error.message,
+      position: 'topRight',
+    });
+  }
 }
-  
-
-
-// эту закоментированную функцию переделать
-// начинать с try { const response = await axios.get
 
 // LOAD MORE
 

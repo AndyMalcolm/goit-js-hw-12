@@ -120,28 +120,23 @@ async function searchImages(query, currentPage) {
       gallery.insertAdjacentHTML('beforeend', galleryHtml);
       lightbox.refresh();
 
-//       lightbox.refresh();
-//     })
-//     .catch(error => {
-//       iziToast.error({
-//         title: 'Error',
-//         message: error.message,
-//         position: 'topRight',
-//       });
-//     });
-// }
-
-
-
-// searchForm.addEventListener('submit', event => {
-//   event.preventDefault();
-
-//   const searchQuery = searchInput.value.trim();
-//   currentPage = 1;
-//   loadMoreButton.style.display = 'none';
-//   searchImages(searchQuery, currentPage);
-//   searchForm.reset();
-// });
+      if (currentPage * perPage >= totalHits) {
+        loadMoreButton.style.display = 'none';
+        iziToast.error({
+          title: 'Error',
+          message: "We're sorry, but you've reached the end of search results.",
+          position: 'topRight',
+        });
+      } else {
+        loadMoreButton.style.display = 'block';
+        const scrollImages = document
+          .querySelector('.gallery-link')
+          .getBoundingClientRect().height;
+        window.scrollBy({
+          top: scrollImages * 2,
+          behavior: 'smooth',
+        });
+      }
   } catch (error) {
     hideLoader();
 
@@ -155,8 +150,17 @@ async function searchImages(query, currentPage) {
 
 // LOAD MORE
 
+searchForm.addEventListener('submit', event => {
+  event.preventDefault();
+
+  const query = searchInput.value.trim();
+  currentPage = 1;
+  loadMoreButton.style.display = 'none';
+  searchImages(query, currentPage);
+  searchForm.reset();
+});
+
 loadMoreButton.addEventListener('click', () => {
   currentPage += 1;
   searchImages(searchQuery, currentPage);
 });
-// там query, тут searchQuery

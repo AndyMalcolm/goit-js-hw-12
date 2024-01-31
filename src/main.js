@@ -87,11 +87,11 @@ async function searchImages(query, currentPage) {
 //       });
 // ТУТ ПЕРЕПИСАТЬ ИЛИ УДАЛИТЬ
 
-      gallery.innerHTML = hits.reduce(
+      const galleryHtml = hits.reduce(
         (html, image) =>
           html +
           `<a class="gallery-link" href="${image.largeImageURL}">
-            <img
+            <img  
                 class="gallery-image"
                 src="${image.webformatURL}"
                 alt="${image.tags}"
@@ -117,6 +117,8 @@ async function searchImages(query, currentPage) {
         </a>`,
         ''
       );
+      gallery.insertAdjacentHTML('beforeend', galleryHtml);
+      lightbox.refresh();
 
 //       lightbox.refresh();
 //     })

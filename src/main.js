@@ -159,7 +159,7 @@ searchForm.addEventListener('submit', event => {
   searchImages(query, currentPage);
   searchForm.reset();
 });
-
+const loadMoreButton = document.querySelector('.lm-button');
 loadMoreButton.addEventListener('click', () => {
   currentPage += 1;
   searchImages(searchQuery, currentPage);

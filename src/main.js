@@ -5,8 +5,6 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from "axios";
 
-// api-key 40999949-91c7d6cea5390f79fde95dcf3
-
 const searchForm = document.querySelector('.search');
 const searchInput = document.querySelector('.input');
 const loaderContainer = document.querySelector('.loader-container');
@@ -63,30 +61,6 @@ async function searchImages(query, currentPage) {
     if (currentPage === 1) {
       gallery.innerHTML = '';
     }
-// function searchImages(query) {
-//   requestParams.q = query;
-
-
-//   fetch(`https://pixabay.com/api/?${searchParams}`)
-//     .then(response => {
-
-//       if (!response.ok) {
-//         throw new Error(
-//           'Sorry, there are no images matching your search query. Please try again!'
-//         );
-//       }
-//       return response.json();
-//     })
-
-//     .then(({ hits }) => {       
-
-//       const lightbox = new SimpleLightbox('.gallery a', {
-//         captionDelay: 250,
-//         captionsData: 'alt',
-//         close: true,
-//       });
-// ТУТ ПЕРЕПИСАТЬ ИЛИ УДАЛИТЬ
-
       const galleryHtml = hits.reduce(
         (html, image) =>
           html +

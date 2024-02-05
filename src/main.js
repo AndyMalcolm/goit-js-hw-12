@@ -26,8 +26,7 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-async function searchImages(query, currentPage) {
-  // query = searchQuery;
+async function searchImages(searchQuery, currentPage) {
 
   const requestParams = {
     key: API_KEY,
@@ -126,14 +125,12 @@ async function searchImages(query, currentPage) {
 
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
-
   // const query = searchInput.value.trim();
   searchQuery = searchInput.value.trim();
   currentPage = 1;
   loadMoreButton.style.display = 'none';
   searchImages(query, currentPage);
   searchForm.reset();
-  searchImages(searchQuery, currentPage);
 });
   
 const loadMoreButton = document.querySelector('.lm-button');

@@ -127,12 +127,15 @@ async function searchImages(query, currentPage) {
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
 
-  const query = searchInput.value.trim();
+  // const query = searchInput.value.trim();
+  searchQuery = searchInput.value.trim();
   currentPage = 1;
   loadMoreButton.style.display = 'none';
   searchImages(query, currentPage);
   searchForm.reset();
+  searchImages(searchQuery, currentPage);
 });
+  
 const loadMoreButton = document.querySelector('.lm-button');
 loadMoreButton.addEventListener('click', () => {
   currentPage += 1;

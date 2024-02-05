@@ -14,7 +14,7 @@ const gallery = document.querySelector('.gallery');
 const API_KEY = '40999949-91c7d6cea5390f79fde95dcf3';
 
 let currentPage = 1;
-const perPage = 40;
+const perPage = 15;
 let searchQuery = '';
 
 function showLoader() {
@@ -26,25 +26,6 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-// async function searchImages(query, currentPage) {
-
-//   const requestParams = {
-//     key: API_KEY,
-//     q: searchQuery,
-//     image_type: 'photo',
-//     orientation: 'horizontal',
-//     safesearch: true,
-//     page: currentPage,
-//     per_page: perPage,
-//   };
-//   const searchParams = new URLSearchParams(requestParams);
-
-//   showLoader();
-
-//     try {
-//       const response = await axios.get(
-//         `https://pixabay.com/api/?${searchParams}`
-//       );
 async function searchImages(currentPage) {
   const requestParams = {
     key: API_KEY,
@@ -141,15 +122,6 @@ async function searchImages(currentPage) {
 
 // LOAD MORE
 
-// searchForm.addEventListener('submit', event => {
-//   event.preventDefault();
-
-//   const query = searchInput.value.trim();
-//   currentPage = 1;
-//   loadMoreButton.style.display = 'none';
-//   searchImages(query, currentPage);
-//   searchForm.reset();
-// });
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
 

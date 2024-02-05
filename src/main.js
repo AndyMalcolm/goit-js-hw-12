@@ -29,7 +29,7 @@ function hideLoader() {
 }
 
 async function searchImages(query, currentPage) {
-  query = searchQuery;
+  // query = searchQuery;
 
   const requestParams = {
     key: API_KEY,

@@ -26,7 +26,8 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-async function searchImages(searchQuery, currentPage) {
+async function searchImages(query, currentPage) {
+  // query = searchQuery;
 
   const requestParams = {
     key: API_KEY,
@@ -125,16 +126,16 @@ async function searchImages(searchQuery, currentPage) {
 
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
-  // const query = searchInput.value.trim();
-  searchQuery = searchInput.value.trim();
+
+  const query = searchInput.value.trim();
   currentPage = 1;
   loadMoreButton.style.display = 'none';
   searchImages(query, currentPage);
   searchForm.reset();
 });
-  
 const loadMoreButton = document.querySelector('.lm-button');
 loadMoreButton.addEventListener('click', () => {
   currentPage += 1;
   searchImages(searchQuery, currentPage);
 });
+
